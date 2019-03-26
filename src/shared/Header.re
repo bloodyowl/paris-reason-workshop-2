@@ -15,8 +15,15 @@ let make = _ => {
   ...component,
   render: _ =>
     <header className=Styles.container>
-      <div role="heading" ariaLevel=1 className=Styles.text>
-        "ParisReason Workshop 2"->ReasonReact.string
-      </div>
+      <a
+        href="/"
+        onClick={event => {
+          event->ReactEvent.Mouse.preventDefault;
+          ReasonReact.Router.push("/");
+        }}>
+        <div role="heading" ariaLevel=1 className=Styles.text>
+          "ParisReason Workshop 2"->ReasonReact.string
+        </div>
+      </a>
     </header>,
 };
