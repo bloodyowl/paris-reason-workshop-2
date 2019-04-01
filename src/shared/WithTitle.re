@@ -5,10 +5,6 @@ let suffix = title =>
 
 [@react.component]
 let make = (~title, ~children) => {
-  React.useEffect0(() => {
-    Seo.set(~title=title->suffix, ());
-    None;
-  });
   React.useEffect1(
     () => {
       Seo.set(~title=title->suffix, ());
