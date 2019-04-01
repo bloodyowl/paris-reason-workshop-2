@@ -30,7 +30,7 @@ module Styles = {
 [@react.component]
 let make = _ => {
   let (state, send) =
-    Update.useReducer(
+    ReactUpdate.useReducer(
       {beerList: NotAsked, beers: Belt.Map.String.empty}, (action, state) =>
       switch (action) {
       | LoadBeerList =>
