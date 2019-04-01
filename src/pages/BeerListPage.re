@@ -1,4 +1,4 @@
-let component = ReasonReact.statelessComponent("BeerListPage");
+[@bs.config {jsx: 3}];
 
 module Styles = {
   open Css;
@@ -14,43 +14,45 @@ module Styles = {
     ]);
   let text = style([marginLeft(20->px)]);
 };
+
+[@react.component]
 let make =
     (
       ~beerList: RequestStatus.t(Belt.Result.t(array(BeerList.t), Errors.t)),
       ~onLoadRequest,
       _,
     ) => {
-  ...component,
-  didMount: _ => {
-    switch (beerList) {
-    | NotAsked => onLoadRequest()
-    | _ => ()
+  React.useEffect0(() => {
+    {
+      switch (beerList) {
+      | NotAsked => onLoadRequest()
+      | _ => ()
+      };
     };
-  },
-  render: _ =>
-    <div>
-      {switch (beerList) {
-       | NotAsked => ReasonReact.null
-       | Loading => ReasonReact.string("Loading")
-       | Done(Error(_)) => ReasonReact.string("Request failed")
-       | Done(Ok(beers)) =>
-         beers
-         ->Belt.Array.map(beer =>
-             <a
-               href={"/beers/" ++ string_of_int(beer.id)}
-               onClick={event => {
-                 event->ReactEvent.Mouse.preventDefault;
-                 ReasonReact.Router.push(
-                   "/beers/" ++ string_of_int(beer.id),
-                 );
-               }}
-               className=Styles.item
-               key={beer.id->string_of_int}>
-               <img src={beer.image_url} width="32" alt="" />
-               <div className=Styles.text> beer.name->ReasonReact.string </div>
-             </a>
-           )
-         ->ReasonReact.array
-       }}
-    </div>,
+    None;
+  });
+
+  <div>
+    {switch (beerList) {
+     | NotAsked => ReasonReact.null
+     | Loading => ReasonReact.string("Loading")
+     | Done(Error(_)) => ReasonReact.string("Request failed")
+     | Done(Ok(beers)) =>
+       beers
+       ->Belt.Array.map(beer =>
+           <a
+             href={"/beers/" ++ string_of_int(beer.id)}
+             onClick={event => {
+               event->ReactEvent.Mouse.preventDefault;
+               ReasonReact.Router.push("/beers/" ++ string_of_int(beer.id));
+             }}
+             className=Styles.item
+             key={beer.id->string_of_int}>
+             <img src={beer.image_url} width="32" alt="" />
+             <div className=Styles.text> beer.name->ReasonReact.string </div>
+           </a>
+         )
+       ->ReasonReact.array
+     }}
+  </div>;
 };

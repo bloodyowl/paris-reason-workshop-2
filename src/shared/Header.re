@@ -1,4 +1,4 @@
-let component = ReasonReact.statelessComponent("Header");
+[@bs.config {jsx: 3}];
 
 module Styles = {
   open Css;
@@ -11,19 +11,18 @@ module Styles = {
   let text = style([textAlign(center), fontWeight(extraBold)]);
 };
 
+[@react.component]
 let make = _ => {
-  ...component,
-  render: _ =>
-    <header className=Styles.container>
-      <a
-        href="/"
-        onClick={event => {
-          event->ReactEvent.Mouse.preventDefault;
-          ReasonReact.Router.push("/");
-        }}>
-        <div role="heading" ariaLevel=1 className=Styles.text>
-          "ParisReason Workshop 2"->ReasonReact.string
-        </div>
-      </a>
-    </header>,
+  <header className=Styles.container>
+    <a
+      href="/"
+      onClick={event => {
+        event->ReactEvent.Mouse.preventDefault;
+        ReasonReact.Router.push("/");
+      }}>
+      <div role="heading" ariaLevel=1 className=Styles.text>
+        "ParisReason Workshop 2"->ReasonReact.string
+      </div>
+    </a>
+  </header>;
 };

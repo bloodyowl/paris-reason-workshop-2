@@ -1,7 +1,2 @@
-type state;
-
-type action;
-
-let make:
-  (~title: string, array(ReasonReact.reactElement)) =>
-  ReasonReact.component(state, ReasonReact.noRetainedProps, action);
+[@react.component]
+let make: (~title: string, ~children: React.element) => React.element;

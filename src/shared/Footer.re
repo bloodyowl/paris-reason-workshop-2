@@ -1,4 +1,4 @@
-let component = ReasonReact.statelessComponent("Footer");
+[@bs.config {jsx: 3}];
 
 module Styles = {
   open Css;
@@ -11,12 +11,11 @@ module Styles = {
   let text = style([textAlign(center)]);
 };
 
+[@react.component]
 let make = _ => {
-  ...component,
-  render: _ =>
-    <header className=Styles.container>
-      <div className=Styles.text>
-        {j|© 2019 - ParisReason|j}->ReasonReact.string
-      </div>
-    </header>,
+  <header className=Styles.container>
+    <div className=Styles.text>
+      {j|© 2019 - ParisReason|j}->ReasonReact.string
+    </div>
+  </header>;
 };

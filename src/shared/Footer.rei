@@ -1,7 +1,2 @@
-let make:
-  array(ReasonReact.reactElement) =>
-  ReasonReact.component(
-    ReasonReact.stateless,
-    ReasonReact.noRetainedProps,
-    ReasonReact.actionless,
-  );
+[@react.component]
+let make: array(ReasonReact.reactElement) => React.element;

@@ -1,8 +1,5 @@
 {
   "name": "react-template",
-  "reason": {
-    "react-jsx": 2
-  },
   "sources": {
     "dir": "src",
     "subdirs": true
@@ -16,5 +13,8 @@
   "suffix": ".bs.js",
   "namespace": true,
   "bs-dependencies": ["reason-react", "bs-css", "bs-webapi"],
-  "refmt": 3
+  "refmt": 3,
+  "ppx-flags": [
+    "./node_modules/reason-react/_build/default/jsx_ppx/reactjs_jsx_ppx_v3.exe"
+  ]
 }
